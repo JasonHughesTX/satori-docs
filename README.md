@@ -1,6 +1,6 @@
 <p align="center"><img src="img/logo.png" alt="Satori CI Logo" style="width:200px;"/></p>
 
-# The Satori CI Documentation
+# Satori CI Documentation
 
 Introduction: Satori CI is a robust Continuous Integration (CI) tool designed to streamline your development workflows. It provides seamless integration with your projects, offering automated build, test, and deployment capabilities.
 
