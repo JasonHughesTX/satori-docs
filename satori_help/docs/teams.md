@@ -1,111 +1,74 @@
+
 # Teams
 
-By default you are a member of your own Private team. Here is where your repositories and monitors will be by default. Teams allow you to group monitors, repositories and people with their own notifications channels.
+By default, you are a member of your own private team, where your repositories and monitors reside by default. Teams allow you to group monitors, repositories, and people together, each with its own settings and access controls.
 
-![Teams](img/team_1.png)
+## Creating a Team
 
-#### List Members
+To create a new team, use the command:
 
-You can list the members of your teams like this:
-
-```sh
-satori team Private members
+```
+satori team create <team-name>
 ```
 
-![Team Members](img/team_2.png)
+This command creates a new team where you can add members, repositories, and monitors.
 
-#### Add Member
+## Managing Team Members
 
-If the user's email is part of Satori CI, it will be automatically added. Otherwise, they will receive an invitation to join your team.
+### Adding Members
 
-```sh
-satori team Private add --email="member_email@yourdomain.com"
+To add a member to a team:
+
+```
+satori team add-member --team <team-name> --email <member-email>
 ```
 
-![Add Team Members](img/team_3.png)
+### Removing Members
 
-## Create a Team
+To remove a member from a team:
 
-This is how you would create the "Backend" team:
-
-```sh
-satori team Backend create
+```
+satori team remove-member --team <team-name> --email <member-email>
 ```
 
-#### Add or delete repositories of your Team
+## Managing Repositories and Monitors
 
-Include within your Backend team a certain repo:
+### Adding Repositories to a Team
 
-```sh
-satori team Backend add --repo="GithubAccount/Repository"
+```
+satori team add-repo --team <team-name> --repo <repository-name>
 ```
 
-![Team Members](img/team_4.png)
+### Removing Repositories from a Team
 
-You can also include all the repositories of a certain account with:
-
-```sh
-satori team Private add --repo="GithubAccount/repo-name"
+```
+satori team remove-repo --team <team-name> --repo <repository-name>
 ```
 
-![Team Members](img/team_5.png)
+### Adding Monitors to a Team
 
-If you want to remove them, you would use the `delete` subcommand.
-
-#### List your team repositories
-
-You can list the repositories of your team like this:
-
-```sh
-satori team Private repos
+```
+satori team add-monitor --team <team-name> --monitor <monitor-name>
 ```
 
-#### Add or delete monitors of your team
+### Removing Monitors from a Team
 
-Once you launched a monitor, you can associate it with a team:
-
-```sh
-satori team Private add monitor="ID"
+```
+satori team remove-monitor --team <team-name> --monitor <monitor-name>
 ```
 
-If you want to remove them, you would use the `delete` subcommand.
+## Setting Up Team Notifications
 
-#### List Monitors
+Satori supports integrating with various services for team notifications, such as Slack and Discord. To set up notifications:
 
-You can list the monitors of your team like this:
-
-```sh
-satori team Private monitors
+```
+satori team notify --team <team-name> --service <service-name> --config <configuration-details>
 ```
 
-## Delete a Team
+Replace `<service-name>` with the notification service you're using (e.g., `slack`, `discord`) and `<configuration-details>` with the necessary configuration information for the service.
 
-You can remove a team like this:
+For more detailed instructions on configuring notifications for specific services, refer to the respective sections in the documentation.
 
-```sh
-satori team TeamName delete
-```
+![Screenshot of team notifications setup](img/notifications_setup.png)
 
-## Team Notifications
-
-You can get the following notification configurations:
-
-- slack_workspace
-- slack_channel
-- discord_channel
-- notification_email
-
-And it would be used like this:
-
-```sh
-$ satori team SatoriCI get_config discord_channel
-Satori CI 1.2.51 - Automated Software Testing Platform - Started on 2023-07-03 16:50:40
-discord_channel: 87654
-```
-
-The previous value, was defined like this:
-
-```sh
-$ satori team Private set_config discord_channel 87654
-True
-```
+Remember, managing teams effectively can streamline your CI/CD workflows and enhance collaboration within your organization.
